@@ -22,11 +22,12 @@
 
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
+	{% block css %}{% endblock %}
     
-    <title>Royal Bike Smith</title>
+    <title>{% block title %}Royal Bike Smith{% endblock %}</title>
 </head>
 <body>
-    
+    {% block navbar %}
     <div class="wrap">
 	    <div class="container">
 				<div class="row justify-content-between">
@@ -83,12 +84,15 @@
 	        	<li class="nav-item"><a href="#" class="nav-link">Project</a></li>
 	        	<!-- <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li> -->
 	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+			  <li class="nav-item active"><a href="{% url 'login' %}" class="nav-link">Login</a></li>
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
+	  {% endblock %}
     <!-- END nav -->
 
+	{% block content %}
 	<div class="hero-wrap">
 	    <div class="home-slider owl-carousel">
 	      <div class="slider-item" style="background-image:url( {% static 'images/bg_1.jpg' %}); ">
@@ -661,8 +665,12 @@
 	  </div>
 	</div>
 		</div>
-	</section>	
+	</section>
+	
+	{% endblock %}
 
+	<!-- start footer -->
+{% block footer %}
 <footer class="footer ftco-section">
   <div class="container">
 	<div class="row mb-5">
@@ -737,7 +745,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
-    
+{% endblock %}
 
 
 

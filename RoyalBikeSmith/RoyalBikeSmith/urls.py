@@ -22,6 +22,7 @@ from .views import homePage
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homePage, name='HomePage'),
+    path('account/', include('user.urls')),
 ]
 
 if settings.DEBUG:
