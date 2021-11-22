@@ -4,3 +4,4 @@ from django.shortcuts import render
 def homePage(request):
     homePageName={'homePageName':'Royal Bike Smith'}
     return render(request, 'index.html', homePageName)
+
