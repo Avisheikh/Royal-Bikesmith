@@ -8,5 +8,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
     re_path(r'^.*\.*', views.page,name='pages'),
+    path('create/', views.create_job_card, name='jobcard'),
 
 ]

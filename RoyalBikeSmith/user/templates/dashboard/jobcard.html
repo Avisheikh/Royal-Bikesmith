@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %} Profile {% endblock title %}
+{% block title %} Job Card {% endblock title %}
 
 {% block content %}
 
 
-
-{% include "includes/footer.html" %}
-
+<form method="POST">
+  {% csrf_token %}
+  {{ customer.as_p }}
+  {{ jobcard.as_p }}
+  <input type="submit" value="Submit">
+</form>
 
 
 {% endblock content %}
