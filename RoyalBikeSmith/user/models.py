@@ -1,7 +1,9 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Customer(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     address = models.CharField(max_length=150)
@@ -18,7 +20,7 @@ class Customer(models.Model):
         return self.first_name
 
 class JobCard(models.Model):
-    user = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     part_number = models.CharField(max_length=150)
     part_name = models.CharField(max_length=150)
     quantity = models.IntegerField()
