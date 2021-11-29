@@ -14,6 +14,8 @@ class Customer(models.Model):
     registration_number = models.CharField(max_length=200)
     current_km = models.IntegerField()
     description = models.TextField(null=True)
+    work_assigned = models.CharField(max_length=150)
+    maintenance_type = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
