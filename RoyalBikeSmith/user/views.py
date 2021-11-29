@@ -21,21 +21,24 @@ def create_job_card(request):
 
     if request.method == "POST":
         customer_form = CustomerForm(data=request.POST)
-        # job_card_form = JobCardForm(data=request.POST)
-        
-        print(customer_form.is_valid())
+        job_card_form = JobCardForm(data=request.POST)
 
-        if customer_form.is_valid():
-            print(customer_form)
+        print(customer_form.is_valid())
+        print(job_card_form.is_valid())
+
+        if customer_form.is_valid() and job_card_form.is_valid():
+        
             customer_save = customer_form.save(commit=False)
             customer_save.user_id = request.user.id 
             customer_save.save()
-            # job_card_form.save()
+            
+            job_save = job_card_form.save(commit=False)
+            job_save.customer_id = customer_save.id
+            job_save.save()
 
     else:
         customer_form = CustomerForm()
-        # job_card_form = JobCardForm()
+        job_card_form = JobCardForm()
 
-
-    return render(request, 'dashboard/jobcard.html',{'customer':customer_form,})
+    return render(request, 'dashboard/jobcard.html',{'customer':customer_form,'jobcard':job_card_form})
 
