@@ -8,7 +8,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=150)
     address = models.CharField(max_length=150)
     mobile_number = models.IntegerField()
-    phone_number = models.IntegerField()
+    phone_number = models.IntegerField(null=True)
     vechile_name = models.CharField(max_length=150)
     model_name = models.CharField(max_length=150)
     registration_number = models.CharField(max_length=200)
@@ -21,12 +21,13 @@ class Customer(models.Model):
 
 class JobCard(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    invoice_no = models.IntegerField()
     part_number = models.CharField(max_length=150)
     part_name = models.CharField(max_length=150)
     quantity = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    remarks = models.TextField()
-    total = models.IntegerField()
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.part_name
