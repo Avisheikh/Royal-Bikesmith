@@ -92,8 +92,9 @@
       </div>
     </div>
 
-    <button class="add_field_button btn btn-danger">Add More Cell</button>
-    <!-- <button class="remove_field_button btn btn-success">Remove Cell</button> -->
+    <button class="add_field_button btn btn-danger">Add Cell</button>
+    <button class="delete_field_button btn btn-success">Delete Cell</button>
+    
 
     <table class="table table-bordered table-primary mt-1">
       <thead>
@@ -103,6 +104,7 @@
           <th scope="col">Quantity</th>
           <th scope="col">Price</th>
           <th scope="col">Total</th>
+          <th scope="col">Select Cell</th>
         </tr>
       </thead>
 
@@ -113,7 +115,9 @@
           <td class="col-md-2"><input type="number" class="form-control" name="quantity"></td>
           <td class="col-md-2"><input type="number" pattern="^\d*(\.\d{0,2})?$" class="form-control" name="price"></td>
           <td class="col-md-2"><input type="number" class="form-control" pattern="^\d*(\.\d{0,2})?$" name="total"></td>
+          <td class="col-sm-1"><input type="checkbox" disabled class="form-control" name="record"></td>
         </tr>
+        
         <!-- <tr>
           <td class="col-md-2"><input type="text" class="form-control" name="part_number"></td>
           <td class="col-md-2"><input type="text" class="form-control" name="part_name"></td>
