@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from .forms import CustomerForm, JobCardForm
-from .models import JobCard
+from .models import JobCard, Customer
 # Create your views here.
 
 @login_required
@@ -51,3 +51,10 @@ def create_job_card(request):
 
     return render(request, 'dashboard/jobcard.html',{'customer':customer_form,'jobcard':job_card_form})
 
+
+def listJobCard(request):
+
+    get_customer = Customer.objects.all()
+    get_jobcard = JobCard.objects.all()
+
+    return render(request, 'dashboard/tables.html',{'get_customer':get_customer,'get_jobcard':get_jobcard} )
