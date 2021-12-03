@@ -24,7 +24,6 @@ def create_job_card(request):
         customer_form = CustomerForm(data=request.POST)
         job_card_form = JobCardForm(data=request.POST)
 
-        get_invoice_no = request.POST['invoice_no']
         get_part_number = request.POST.getlist('part_number')
         get_part_name = request.POST.getlist('part_name')
         get_quantity = request.POST.getlist('quantity')
@@ -43,7 +42,7 @@ def create_job_card(request):
             # job_save.save()
 
             for a,b,c,d,e in zip(get_part_number,get_part_name, get_quantity,get_price,get_total):
-                JobCard.objects.create(customer_id=customer_save.id, invoice_no=get_invoice_no, part_number=a,part_name=b, quantity=c, price=d, total=e, grand_total=get_grand_total)
+                JobCard.objects.create(customer_id=customer_save.id, part_number=a,part_name=b, quantity=c, price=d, total=e, grand_total=get_grand_total)
 
     else:
         customer_form = CustomerForm()
@@ -58,3 +57,10 @@ def listJobCard(request):
     get_jobcard = JobCard.objects.all()
 
     return render(request, 'dashboard/tables.html',{'get_customer':get_customer,'get_jobcard':get_jobcard} )
+
+def detailView(request, id):
+
+    get_customer = Customer.objects.get(pk = id)
+    get_jobCard = JobCard.objects.filter(customer_id = id)
+
+    return render(request, 'dashboard/detailView.html',{'customer':get_customer,'jobcard':get_jobCard})

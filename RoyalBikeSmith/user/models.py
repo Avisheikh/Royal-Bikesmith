@@ -4,6 +4,7 @@ from django.conf import settings
 # Create your models here.
 class Customer(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    invoice_no = models.IntegerField()
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     address = models.CharField(max_length=150)
@@ -23,7 +24,6 @@ class Customer(models.Model):
 
 class JobCard(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    invoice_no = models.IntegerField()
     part_number = models.CharField(max_length=150)
     part_name = models.CharField(max_length=150)
     quantity = models.IntegerField()

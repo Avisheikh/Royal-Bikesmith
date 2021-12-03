@@ -51,15 +51,15 @@
                 </tr>
               </thead>
               <tbody class="list">
-                {% for customer in get_jobcard %}
-                <tr>
+                {% for customer in get_customer %}
+                <tr class="clickable-row" data-href="{% url 'detail' customer.id %}">
                   <th scope="row">
                     <div class="media align-items-center">
                       <a href="#" class="avatar rounded-circle mr-3">
                         <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">
                       </a>
                       <div class="media-body">
-                        <span class="name mb-0 text-sm">{{ customer.customer.first_name }} {{customer.customer.last_name}}</span>
+                        <span class="name mb-0 text-sm">{{ customer.first_name }} {{customer.last_name}}</span>
                       </div>
                     </div>
                   </th>
@@ -69,19 +69,19 @@
                   <td>
                     <span class="badge badge-dot mr-4">
                       <i class="bg-warning"></i>
-                      <span class="status">{{customer.customer.vechile_name}}</span>
+                      <span class="status">{{customer.vechile_name}}</span>
                     </span>
                   </td>
                   <td>
-                    {{customer.customer.mobile_number}}
+                    {{customer.mobile_number}}
                   </td>
                   <td>
                     <div class="d-flex align-items-center">
-                      {{customer.customer.created}}
+                      {{customer.created}}
                     </div>
                   </td>
                   <td class="text-right">
-                    {{customer.customer.work_assigned}}
+                    {{customer.work_assigned}}
                     <div class="dropdown">
                       <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-ellipsis-v"></i>
@@ -89,7 +89,6 @@
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                         <a class="dropdown-item" href="#">Edit</a>
                         <a class="dropdown-item" href="#">Delete</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
                       </div>
                     </div>
                   </td>
@@ -135,4 +134,12 @@
 {% endblock content %}
 
 <!-- Specific JS goes HERE --> 
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script>
+  jQuery(document).ready(function($){
+    $(".clickable-row").click(function(){
+      window.location = $(this).data("href");
+    });
+  });
+</script>
+{% endblock javascripts %}

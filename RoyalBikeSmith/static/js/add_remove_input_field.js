@@ -26,9 +26,9 @@ $(document).ready(function(){
 });
 
 //limit number input decimal places to two
-$(':input[type="number"]').change(function(){
-	this.value = parseFloat(this.value).toFixed(2);
-});
+// $(':input[type="number"]').change(function(){
+// 	this.value = parseFloat(this.value).toFixed(2);
+// });
 
 // Auto calculation
 // $(".input").on('input',function(){

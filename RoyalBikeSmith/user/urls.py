@@ -9,5 +9,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('create/', views.create_job_card, name='jobcard'),
     path('list/',views.listJobCard,name="listJobCard" ),
+    path('detail/<int:id>', views.detailView, name="detail")
 
 ]
