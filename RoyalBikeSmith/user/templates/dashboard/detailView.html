@@ -39,8 +39,8 @@
                   <span class="description">Invoice Number</span>
                 </div>
                 <div>
-                  <span class="heading">{{jobcard.id}}</span>
-                  <span class="description">JobCard ID</span>
+                  <span class="heading">{{request.user.id}}</span>
+                  <span class="description">User ID</span>
                 </div>
               </div>
             </div>
@@ -76,33 +76,33 @@
         </div>
         <div class="card-body">
           <form>
-            <h6 class="heading-small text-muted mb-4">User information</h6>
+            <h6 class="heading-small text-muted mb-4">Bike information</h6>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-username">Username</label>
-                    <input type="text" id="input-username" class="form-control text-dark" disabled placeholder="Username" value="{{ request.user.username }}">
+                    <label class="form-control-label" for="input-username">Vechile Name</label>
+                    <input type="text" id="input-username" class="form-control text-dark" disabled  value="{{ customer.vechile_name }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Email address</label>
-                    <input type="email" id="input-email" class="form-control" placeholder="{{ request.user.email }}">
+                    <label class="form-control-label" for="input-email">Model Number</label>
+                    <input type="text" id="input-email" class="form-control text-dark" disabled value="{{ customer.model_name}}">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">First name</label>
-                    <input type="text" id="input-first-name" class="form-control" placeholder="First name" value="{{ request.user.first_name }}">
+                    <label class="form-control-label" for="input-first-name"> Registration Number</label>
+                    <input type="text" id="input-first-name" class="form-control text-dark" disabled  value="{{ customer.registration_number }}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Last name</label>
-                    <input type="text" id="input-last-name" class="form-control" placeholder="Last name" value="{{ request.user.last_name }}">
+                    <label class="form-control-label" for="input-last-name">Current Kilo-Meter</label>
+                    <input type="text" id="input-last-name" class="form-control text-dark" disabled value="{{ customer.current_km }}">
                   </div>
                 </div>
               </div>
@@ -115,44 +115,89 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Address</label>
-                    <input id="input-address" class="form-control" placeholder="Home Address" value="Kupondol, Laltipur, Nepal" type="text">
+                    <input id="input-address" class="form-control text-dark" disabled value="{{customer.address}}" type="text">
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-city">City</label>
-                    <input type="text" id="input-city" class="form-control" placeholder="City" value="Laltipur">
+                    <label class="form-control-label" for="input-city">Mobile Number</label>
+                    <input type="text" id="input-city" class="form-control text-dark" disabled value="{{customer.mobile_number}}">
                   </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-country">Country</label>
-                    <input type="text" id="input-country" class="form-control" placeholder="Country" value="Nepal">
+                    <label class="form-control-label" for="input-country">Phone Number</label>
+                    <input type="text" id="input-country" class="form-control text-dark" disabled value="{{customer.phone_number}}">
                   </div>
                 </div>
-                <div class="col-lg-4">
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Maintenance information</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-country">Postal code</label>
-                    <input type="number" id="input-postal-code" class="form-control" placeholder="Postal code">
+                    <label class="form-control-label" for="input-address">Created Date</label>
+                    <input id="input-address" class="form-control text-dark" disabled value="{{customer.created}}" type="text">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-city">Maintenance Type</label>
+                    <input type="text" id="input-city" class="form-control text-dark" disabled value="{{customer.maintenance_type}}">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-country">Work Assign To</label>
+                    <input type="text" id="input-country" class="form-control text-dark" disabled value="{{customer.work_assigned}}">
                   </div>
                 </div>
               </div>
             </div>
             <hr class="my-4" />
             <!-- Description -->
-            <h6 class="heading-small text-muted mb-4">About me</h6>
+            <h6 class="heading-small text-muted mb-4">Description</h6>
             <div class="pl-lg-4">
               <div class="form-group">
-                <label class="form-control-label">About Me</label>
-                <textarea rows="4" class="form-control" placeholder="A few words about you ..."></textarea>
+                <textarea rows="4" class="form-control text-dark" disabled>{{customer.description}}</textarea>
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Part Number</th>
+                <th scope="col">Part Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for card in jobcard %}
+              <tr>
+                <th scope="row">{{card.part_number}}</th>
+                <td>{{card.part_name}}</td>
+                <td>{{card.quantity}}</td>
+                <td>{{card.price}}</td>
+                <td>{{card.total}}</td>
+              </tr>
+            </tbody>
+            {% endfor %}
+    </table>
   </div>
 
   {% include "includes/footer.html" %}
