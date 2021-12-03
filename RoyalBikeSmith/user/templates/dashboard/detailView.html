@@ -139,11 +139,17 @@
             <h6 class="heading-small text-muted mb-4">Maintenance information</h6>
             <div class="pl-lg-4">
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-address">Created Date</label>
                     <input id="input-address" class="form-control text-dark" disabled value="{{customer.created}}" type="text">
                   </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-address">Total Maintenance Cost</label>
+                      <input id="input-address" class="form-control text-dark" disabled value="{{customer.grand_total}}" type="text">
+                    </div>
                 </div>
               </div>
               <div class="row">
