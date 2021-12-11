@@ -6,7 +6,7 @@ from django import template
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-from .forms import CustomerForm, JobCardForm
+from .forms import CustomerForm, JobCardForm, UserRegistrationForm
 from .models import JobCard, Customer
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
@@ -79,3 +79,19 @@ def detailView(request, id):
     get_jobCard = JobCard.objects.filter(customer_id = id)
 
     return render(request, 'dashboard/detailView.html',{'customer':get_customer,'jobcard':get_jobCard})
+
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        print(user_form)
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data['password'])
+            new_user.save()
+            return render(request, 'dashboard/register_done.html',{'new_user': new_user})
+        
+    else:
+        user_form = UserRegistrationForm()
+
+    return render(request, 'dashboard/register.html',{'user_form': user_form})
