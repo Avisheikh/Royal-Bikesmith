@@ -8,6 +8,7 @@ from django.template import loader
 from django.urls import reverse
 from .forms import CustomerForm, JobCardForm
 from .models import JobCard, Customer
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 @login_required
@@ -36,14 +37,14 @@ def create_job_card(request):
             customer_save = customer_form.save(commit=False)
             customer_save.user_id = request.user.id 
             customer_save.save()
-            
-            # job_save = job_card_form.save(commit=False)
-            # job_save.customer_id = customer_save.id
-            # job_save.save()
+                    
+                    # job_save = job_card_form.save(commit=False)
+                    # job_save.customer_id = customer_save.id
+                    # job_save.save()
 
             for a,b,c,d,e in zip(get_part_number,get_part_name, get_quantity,get_price,get_total):
-                JobCard.objects.create(customer_id=customer_save.id, part_number=a,part_name=b, quantity=c, price=d, total=e, grand_total=get_grand_total)
-
+                JobCard.objects.create(customer_id=customer_save.id, part_number=a,part_name=b, quantity=c, price=d, total=e)
+            
     else:
         customer_form = CustomerForm()
         job_card_form = JobCardForm()
@@ -54,9 +55,23 @@ def create_job_card(request):
 def listJobCard(request):
 
     get_customer = Customer.objects.all()
-    get_jobcard = JobCard.objects.all()
+    page = request.GET.get('page',1)
 
-    return render(request, 'dashboard/tables.html',{'get_customer':get_customer,'get_jobcard':get_jobcard} )
+
+    paginator = Paginator(get_customer, 8)
+    
+    try:
+        customer = paginator.page(page)
+
+    except PageNotAnInteger:
+        customer = paginator.page(1)
+
+    except EmptyPage:
+        customer = paginator.page(paginator.num_pages)
+
+
+
+    return render(request, 'dashboard/tables.html',{'get_customer':customer,} )
 
 def detailView(request, id):
 
