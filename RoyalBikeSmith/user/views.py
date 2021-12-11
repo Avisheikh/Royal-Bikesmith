@@ -30,7 +30,7 @@ def create_job_card(request):
         get_quantity = request.POST.getlist('quantity')
         get_price = request.POST.getlist('price')
         get_total = request.POST.getlist('total')
-        get_grand_total = request.POST['grand_total']
+        
 
         if customer_form.is_valid() and job_card_form.is_valid():
         
